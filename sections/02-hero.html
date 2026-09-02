@@ -1,0 +1,177 @@
+<!-- ============================================================
+     SEÇÃO 02 — HERO + FORMULÁRIO (Web3Forms)
+     Trocar:
+       - REPLACE_hero-garage.jpg  -> foto de fundo (garagem)
+       - COLE_SUA_ACCESS_KEY_AQUI -> access_key do Web3Forms
+     O JS (glp-scripts.js) cuida do envio AJAX e da mensagem de sucesso.
+     ============================================================ -->
+
+<section class="glp-hero" id="glp-top">
+  <!-- Foto de fundo (troque o src pela URL do WordPress) -->
+  <img class="glp-hero__bg" src="REPLACE_hero-garage.jpg" alt="" aria-hidden="true"
+       fetchpriority="high" width="1600" height="900" onerror="this.style.display='none'">
+
+  <div class="glp-container glp-hero__inner">
+
+    <!-- Coluna de texto -->
+    <div class="glp-hero__content">
+      <span class="glp-hero__badge">Special Pricing Available</span>
+      <h1 class="glp-hero__title">
+        Special Pricing on
+        <span>Garage Floor Coating</span>
+        in Cape Cod, MA
+      </h1>
+      <p class="glp-hero__text">
+        Upgrade your garage with a durable, professional epoxy floor coating
+        designed for a clean finish and long-lasting performance.
+      </p>
+
+      <div class="glp-hero__trust">
+        <div class="glp-hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <span>15+ Years<br>Experience</span>
+        </div>
+        <div class="glp-hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+          <span>Fully<br>Insured</span>
+        </div>
+        <div class="glp-hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+          <span>Free<br>Estimates</span>
+        </div>
+      </div>
+
+      <div class="glp-hero__cta-row">
+        <a href="#glp-estimate" class="glp-btn glp-btn--green">Get My Free Estimate</a>
+      </div>
+      <p class="glp-hero__note">Fast Response &bull; No Obligation</p>
+    </div>
+
+    <!-- Card do formulário -->
+    <div class="glp-form-card" id="glp-estimate">
+      <div class="glp-form-card__head">
+        <h2 class="glp-form-card__title">Get Your <span>Free Estimate</span></h2>
+        <div class="glp-form-progress">
+          <div class="glp-form-progress__label">Step 1 of 2</div>
+          <div class="glp-form-progress__track"><div class="glp-form-progress__bar"></div></div>
+        </div>
+      </div>
+
+      <!-- Web3Forms: action é o fallback caso o JS não rode -->
+      <form class="glp-form" id="glp-lead-form"
+            action="https://api.web3forms.com/submit" method="POST">
+
+        <!-- CONFIG WEB3FORMS -->
+        <input type="hidden" name="access_key" value="COLE_SUA_ACCESS_KEY_AQUI">
+        <input type="hidden" name="subject" value="Novo lead — Garage Floor Coating (LP Goldline)">
+        <input type="hidden" name="from_name" value="LP Goldline — Garage Floor">
+        <!-- Honeypot anti-spam (não preencher) -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"
+               style="display:none !important" aria-hidden="true">
+
+        <div class="glp-form__fields">
+
+          <!-- Project Type -->
+          <div class="glp-field">
+            <span class="glp-field__label">Project Type</span>
+            <div class="glp-choices">
+              <label class="glp-choice">
+                <input type="radio" name="project_type" value="Garage Floor" required checked>
+                <span class="glp-choice__box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M7 21v-6h10v6"/></svg>
+                  Garage Floor
+                </span>
+              </label>
+              <label class="glp-choice">
+                <input type="radio" name="project_type" value="Basement Floor">
+                <span class="glp-choice__box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
+                  Basement Floor
+                </span>
+              </label>
+              <label class="glp-choice">
+                <input type="radio" name="project_type" value="Commercial Floor">
+                <span class="glp-choice__box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M14 9h6a1 1 0 0 1 1 1v11M3 21h18"/></svg>
+                  Commercial Floor
+                </span>
+              </label>
+              <label class="glp-choice">
+                <input type="radio" name="project_type" value="Other">
+                <span class="glp-choice__box">&bull;&bull;&bull;&nbsp; Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Garage Size -->
+          <div class="glp-field">
+            <span class="glp-field__label">Garage Size</span>
+            <div class="glp-choices glp-choices--3" style="grid-template-columns:repeat(3,1fr);">
+              <label class="glp-choice">
+                <input type="radio" name="garage_size" value="1 Car" required checked>
+                <span class="glp-choice__box">1 Car</span>
+              </label>
+              <label class="glp-choice">
+                <input type="radio" name="garage_size" value="2 Cars">
+                <span class="glp-choice__box">2 Cars</span>
+              </label>
+              <label class="glp-choice">
+                <input type="radio" name="garage_size" value="3 Cars">
+                <span class="glp-choice__box">3 Cars</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nome + Telefone -->
+          <div class="glp-form__row">
+            <div class="glp-field">
+              <label class="glp-field__label" for="glp-name">Full Name</label>
+              <input class="glp-input" type="text" id="glp-name" name="name"
+                     placeholder="Enter your full name" required autocomplete="name">
+            </div>
+            <div class="glp-field">
+              <label class="glp-field__label" for="glp-phone">Phone Number</label>
+              <input class="glp-input" type="tel" id="glp-phone" name="phone"
+                     placeholder="(555) 123-4567" required autocomplete="tel">
+            </div>
+          </div>
+
+          <!-- ZIP + Email -->
+          <div class="glp-form__row">
+            <div class="glp-field">
+              <label class="glp-field__label" for="glp-zip">ZIP Code</label>
+              <input class="glp-input" type="text" id="glp-zip" name="zip_code"
+                     placeholder="Enter your ZIP code" inputmode="numeric" required autocomplete="postal-code">
+            </div>
+            <div class="glp-field">
+              <label class="glp-field__label" for="glp-email">
+                Email <small>(optional)</small>
+              </label>
+              <input class="glp-input" type="email" id="glp-email" name="email"
+                     placeholder="you@example.com" autocomplete="email">
+            </div>
+          </div>
+
+          <button type="submit" class="glp-btn glp-btn--green glp-btn--block glp-form__submit">
+            Get My Free Estimate
+          </button>
+
+          <p class="glp-form__privacy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            We respect your privacy. Your information is secure.
+          </p>
+
+          <p class="glp-form__status" id="glp-form-status" role="alert"></p>
+        </div>
+
+        <!-- Mensagem de sucesso (mostrada via JS) -->
+        <div class="glp-form__success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <h3>Thank you!</h3>
+          <p>We received your request and will reach out shortly with your free estimate.</p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>

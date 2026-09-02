@@ -1,0 +1,641 @@
+/* =====================================================================
+   GOLDLINE PAINTING — LANDING PAGE (Garage Floor Coating / Cape Cod, MA)
+   CSS GLOBAL — prefixo "glp-" para não conflitar com o tema / Elementor.
+   Mobile-first. Todos os ajustes de cor/espaçamento ficam nos tokens
+   (:root) logo abaixo. Ordem das seções segue a referência.
+   ===================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* 1. TOKENS (mude aqui e reflete em toda a LP)                        */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Cores da marca */
+  --glp-gold:        #f6b913;
+  --glp-gold-dark:   #d99e00;
+  --glp-green:       #2ead46;
+  --glp-green-dark:  #229038;
+  --glp-dark:        #0e0e0e;
+  --glp-dark-2:      #171717;
+  --glp-dark-3:      #202020;
+
+  /* Neutros */
+  --glp-white:       #ffffff;
+  --glp-bg-light:    #f7f7f7;
+  --glp-text:        #1a1a1a;
+  --glp-text-muted:  #5f5f5f;
+  --glp-text-on-dark:#e7e7e7;
+  --glp-muted-on-dark:#a9a9a9;
+  --glp-border:      #e6e6e6;
+  --glp-border-dark: #333333;
+
+  /* Tipografia */
+  --glp-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+              Roboto, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --glp-container: 1180px;
+  --glp-radius:    14px;
+  --glp-radius-sm: 10px;
+  --glp-radius-pill: 999px;
+
+  /* Sombra */
+  --glp-shadow:    0 18px 45px rgba(0, 0, 0, .18);
+  --glp-shadow-sm: 0 6px 18px rgba(0, 0, 0, .08);
+
+  /* Espaçamento vertical das seções (mobile primeiro) */
+  --glp-section-y: 48px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. RESET LOCAL (escopado ao wrapper .glp-lp para não vazar no WP)   */
+/* ------------------------------------------------------------------ */
+.glp-lp * { margin: 0; padding: 0; box-sizing: border-box; }
+
+.glp-lp {
+  font-family: var(--glp-font);
+  color: var(--glp-text);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: var(--glp-white);
+  overflow-x: hidden;
+}
+
+.glp-lp img { max-width: 100%; height: auto; display: block; }
+.glp-lp a   { text-decoration: none; color: inherit; }
+.glp-lp ul  { list-style: none; }
+.glp-lp button { font-family: inherit; cursor: pointer; }
+
+/* Acessibilidade: respeita quem pediu menos animação */
+@media (prefers-reduced-motion: reduce) {
+  .glp-lp * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. UTILITÁRIOS                                                      */
+/* ------------------------------------------------------------------ */
+.glp-container {
+  width: 100%;
+  max-width: var(--glp-container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.glp-section { padding-block: var(--glp-section-y); }
+.glp-section--light { background: var(--glp-bg-light); }
+.glp-section--dark  { background: var(--glp-dark); color: var(--glp-text-on-dark); }
+
+.glp-eyebrow {
+  display: inline-block;
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: var(--glp-radius-pill);
+}
+
+.glp-h2 {
+  font-size: clamp(26px, 5.4vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  text-align: center;
+}
+.glp-h2 .glp-accent { color: var(--glp-gold); }
+
+.glp-sub {
+  text-align: center;
+  color: var(--glp-text-muted);
+  max-width: 620px;
+  margin: 14px auto 0;
+  font-size: 16px;
+}
+.glp-section--dark .glp-sub { color: var(--glp-muted-on-dark); }
+
+/* Botões */
+.glp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  border-radius: var(--glp-radius-sm);
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+.glp-btn:active { transform: translateY(1px); }
+
+.glp-btn--green {
+  background: var(--glp-green);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(46, 173, 70, .28);
+}
+.glp-btn--green:hover { background: var(--glp-green-dark); }
+
+.glp-btn--gold {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+}
+.glp-btn--gold:hover { background: var(--glp-gold-dark); }
+
+.glp-btn--dark {
+  background: var(--glp-dark);
+  color: #fff;
+}
+.glp-btn--dark:hover { background: #000; }
+
+.glp-btn--block { display: flex; width: 100%; }
+
+/* ------------------------------------------------------------------ */
+/* 4. TOPBAR + HEADER                                                  */
+/* ------------------------------------------------------------------ */
+.glp-topbar {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+}
+
+.glp-header {
+  background: var(--glp-dark);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.glp-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+}
+.glp-logo { display: flex; align-items: center; gap: 10px; }
+.glp-logo img { max-height: 46px; width: auto; }
+.glp-logo__text { display: flex; flex-direction: column; line-height: 1.05; }
+.glp-logo__name { font-weight: 800; font-size: 20px; letter-spacing: .02em; }
+.glp-logo__name span { color: var(--glp-gold); }
+.glp-logo__tag  { font-size: 9px; letter-spacing: .18em; color: var(--glp-muted-on-dark); text-transform: uppercase; }
+
+.glp-header__actions { display: flex; align-items: center; gap: 14px; }
+.glp-header__phone {
+  display: none;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+.glp-header__phone:hover { color: var(--glp-gold); }
+.glp-header .glp-btn { padding: 12px 20px; font-size: 13px; }
+.glp-header__cta-text { display: none; }
+
+/* ------------------------------------------------------------------ */
+/* 5. HERO                                                             */
+/* ------------------------------------------------------------------ */
+.glp-hero {
+  position: relative;
+  background: var(--glp-dark);
+  color: #fff;
+  isolation: isolate;
+}
+.glp-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.glp-hero::after { /* overlay escuro pra leitura */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,.86) 0%, rgba(10,10,10,.78) 60%, rgba(10,10,10,.9) 100%);
+  z-index: -1;
+}
+.glp-hero__inner {
+  display: grid;
+  gap: 32px;
+  padding-block: 40px 48px;
+}
+.glp-hero__badge {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 15px;
+  border-radius: var(--glp-radius-pill);
+  align-self: start;
+  display: inline-block;
+}
+.glp-hero__title {
+  font-size: clamp(30px, 8vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  margin-top: 18px;
+}
+.glp-hero__title span { color: var(--glp-gold); display: block; }
+.glp-hero__text {
+  margin-top: 16px;
+  color: #d4d4d4;
+  font-size: 16px;
+  max-width: 520px;
+}
+.glp-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 26px;
+  margin-top: 26px;
+}
+.glp-hero__trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+.glp-hero__trust-item svg { width: 26px; height: 26px; flex: none; color: var(--glp-gold); }
+.glp-hero__trust-item span { line-height: 1.2; }
+.glp-hero__cta-row { margin-top: 28px; }
+.glp-hero__note { margin-top: 14px; font-size: 13px; color: #bdbdbd; }
+
+/* Form card do hero */
+.glp-form-card {
+  background: #fff;
+  color: var(--glp-text);
+  border-radius: var(--glp-radius);
+  box-shadow: var(--glp-shadow);
+  padding: 22px;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+}
+.glp-form-card__head { text-align: center; }
+.glp-form-card__title { font-size: 20px; font-weight: 800; }
+.glp-form-card__title span { color: var(--glp-gold); }
+.glp-form-progress { margin: 14px 0 4px; }
+.glp-form-progress__label { font-size: 11px; color: var(--glp-text-muted); font-weight: 600; text-align: center; margin-bottom: 6px; }
+.glp-form-progress__track { height: 5px; background: #ececec; border-radius: var(--glp-radius-pill); overflow: hidden; }
+.glp-form-progress__bar { height: 100%; width: 50%; background: var(--glp-gold); border-radius: inherit; transition: width .3s ease; }
+
+/* ------------------------------------------------------------------ */
+/* 6. FORMULÁRIO (Web3Forms)                                          */
+/* ------------------------------------------------------------------ */
+.glp-form { margin-top: 8px; }
+.glp-field { margin-top: 14px; }
+.glp-field__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 7px;
+}
+.glp-field__label small { font-weight: 500; color: var(--glp-text-muted); }
+
+.glp-input {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius-sm);
+  background: #fafafa;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  color: var(--glp-text);
+}
+.glp-input::placeholder { color: #9a9a9a; }
+.glp-input:focus {
+  outline: none;
+  border-color: var(--glp-gold);
+  box-shadow: 0 0 0 3px rgba(246, 185, 19, .18);
+  background: #fff;
+}
+
+/* Grupo de opções em "pílulas" (radio estilizado, sem JS pra selecionar) */
+.glp-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.glp-choices--3 { grid-template-columns: repeat(3, 1fr); }
+.glp-choice { position: relative; }
+.glp-choice input {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.glp-choice__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 8px;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius-sm);
+  background: #fafafa;
+  color: #555;
+  transition: all .15s ease;
+  min-height: 44px;
+  line-height: 1.1;
+}
+.glp-choice__box svg { width: 16px; height: 16px; flex: none; }
+.glp-choice input:checked + .glp-choice__box {
+  border-color: var(--glp-gold);
+  background: #fff8e6;
+  color: var(--glp-dark);
+  box-shadow: inset 0 0 0 1px var(--glp-gold);
+}
+.glp-choice input:focus-visible + .glp-choice__box {
+  box-shadow: 0 0 0 3px rgba(246, 185, 19, .25);
+}
+
+.glp-form__row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.glp-form__submit { margin-top: 18px; }
+.glp-form__privacy {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--glp-text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  justify-content: center;
+  text-align: center;
+}
+.glp-form__privacy svg { width: 13px; height: 13px; flex: none; margin-top: 2px; color: var(--glp-green); }
+
+/* Estados de envio */
+.glp-form__status { margin-top: 12px; font-size: 13px; text-align: center; font-weight: 600; display: none; }
+.glp-form__status--error   { display: block; color: #c0392b; }
+.glp-form__success {
+  display: none;
+  text-align: center;
+  padding: 26px 10px;
+}
+.glp-form__success svg { width: 52px; height: 52px; color: var(--glp-green); margin: 0 auto 12px; }
+.glp-form__success h3 { font-size: 20px; font-weight: 800; }
+.glp-form__success p  { color: var(--glp-text-muted); margin-top: 6px; font-size: 14px; }
+.glp-form.is-sent .glp-form__fields { display: none; }
+.glp-form.is-sent .glp-form__success { display: block; }
+.glp-btn.is-loading { opacity: .7; pointer-events: none; }
+
+/* ------------------------------------------------------------------ */
+/* 7. TRUST STRIP                                                      */
+/* ------------------------------------------------------------------ */
+.glp-trust-strip { background: #fff; border-bottom: 1px solid var(--glp-border); }
+.glp-trust-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 12px;
+  padding-block: 26px;
+}
+.glp-trust-strip__item { display: flex; align-items: center; gap: 12px; }
+.glp-trust-strip__item svg { width: 30px; height: 30px; color: var(--glp-gold); flex: none; }
+.glp-trust-strip__item b { display: block; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.glp-trust-strip__item span { font-size: 13px; color: var(--glp-text-muted); }
+
+/* ------------------------------------------------------------------ */
+/* 8. PRICING                                                          */
+/* ------------------------------------------------------------------ */
+.glp-pricing__head { text-align: center; }
+.glp-pricing__head .glp-eyebrow { margin-bottom: 16px; }
+.glp-pricing__grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+.glp-price-card {
+  position: relative;
+  background: var(--glp-dark-2);
+  border: 1.5px solid var(--glp-border-dark);
+  border-radius: var(--glp-radius);
+  padding: 30px 22px;
+  text-align: center;
+}
+.glp-price-card--featured {
+  border-color: var(--glp-gold);
+  box-shadow: 0 0 0 1px var(--glp-gold), 0 20px 45px rgba(0,0,0,.4);
+}
+.glp-price-card__tag {
+  display: inline-block;
+  background: rgba(246,185,19,.16);
+  color: var(--glp-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--glp-radius-pill);
+}
+.glp-price-card__badge {
+  position: absolute;
+  top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--glp-radius-pill);
+  white-space: nowrap;
+}
+.glp-price-card__name { font-size: 24px; font-weight: 800; margin-top: 18px; color: #fff; }
+.glp-price-card__divider { width: 46px; height: 3px; background: var(--glp-gold); border-radius: 2px; margin: 16px auto; }
+.glp-price-card__from { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--glp-muted-on-dark); }
+.glp-price-card__value { font-size: 44px; font-weight: 800; color: var(--glp-gold); line-height: 1; margin-top: 6px; }
+.glp-pricing__cta { text-align: center; margin-top: 30px; }
+.glp-pricing__disclaimer { text-align: center; font-size: 12px; color: var(--glp-muted-on-dark); margin-top: 18px; }
+
+/* ------------------------------------------------------------------ */
+/* 9. BEFORE / AFTER                                                  */
+/* ------------------------------------------------------------------ */
+.glp-ba__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+.glp-ba__item { position: relative; border-radius: var(--glp-radius); overflow: hidden; box-shadow: var(--glp-shadow-sm); }
+.glp-ba__item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.glp-ba__label {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: 6px 14px;
+  border-radius: var(--glp-radius-pill);
+}
+.glp-ba__label--before { background: var(--glp-dark); color: #fff; }
+.glp-ba__label--after  { background: var(--glp-gold); color: var(--glp-dark); }
+
+/* ------------------------------------------------------------------ */
+/* 10. BENEFITS                                                        */
+/* ------------------------------------------------------------------ */
+.glp-benefits__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+.glp-benefit {
+  background: #fff;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius);
+  padding: 26px 22px;
+  box-shadow: var(--glp-shadow-sm);
+}
+.glp-benefit__icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: #fff8e6;
+  margin-bottom: 16px;
+}
+.glp-benefit__icon svg { width: 28px; height: 28px; color: var(--glp-gold-dark); }
+.glp-benefit__title { font-size: 18px; font-weight: 700; }
+.glp-benefit__text { font-size: 14px; color: var(--glp-text-muted); margin-top: 8px; }
+
+/* ------------------------------------------------------------------ */
+/* 11. GALLERY                                                         */
+/* ------------------------------------------------------------------ */
+.glp-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 30px;
+}
+.glp-gallery__item { border-radius: var(--glp-radius-sm); overflow: hidden; box-shadow: var(--glp-shadow-sm); }
+.glp-gallery__item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .35s ease; }
+.glp-gallery__item:hover img { transform: scale(1.05); }
+
+/* ------------------------------------------------------------------ */
+/* 12. WHY GOLDLINE                                                    */
+/* ------------------------------------------------------------------ */
+.glp-why__inner { display: grid; gap: 28px; }
+.glp-why__media { border-radius: var(--glp-radius); overflow: hidden; box-shadow: var(--glp-shadow); }
+.glp-why__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.glp-why__eyebrow { color: var(--glp-gold); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.glp-why__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.12; margin-top: 12px; color: #fff; }
+.glp-why__list { margin-top: 22px; display: grid; gap: 14px; }
+.glp-why__list li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; }
+.glp-why__list svg { width: 22px; height: 22px; color: var(--glp-gold); flex: none; }
+.glp-why__cta { margin-top: 28px; }
+
+/* ------------------------------------------------------------------ */
+/* 13. TESTIMONIALS                                                    */
+/* ------------------------------------------------------------------ */
+.glp-testi__grid { display: grid; gap: 16px; margin-top: 32px; }
+.glp-testi-card {
+  background: #fff;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius);
+  padding: 26px 22px;
+  box-shadow: var(--glp-shadow-sm);
+  text-align: center;
+}
+.glp-testi-card__stars { display: flex; justify-content: center; gap: 3px; margin-bottom: 14px; }
+.glp-testi-card__stars svg { width: 18px; height: 18px; color: var(--glp-gold); }
+.glp-testi-card__text { font-size: 15px; font-style: italic; color: #333; }
+.glp-testi-card__author { margin-top: 14px; font-weight: 700; font-size: 14px; color: var(--glp-text); }
+
+/* ------------------------------------------------------------------ */
+/* 14. FINAL CTA                                                       */
+/* ------------------------------------------------------------------ */
+.glp-final-cta {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.glp-final-cta__inner { padding-block: 44px; position: relative; z-index: 1; }
+.glp-final-cta__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.15; }
+.glp-final-cta__text { margin-top: 10px; font-size: 16px; font-weight: 500; }
+.glp-final-cta__btn { margin-top: 24px; }
+.glp-final-cta__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 800;
+}
+.glp-final-cta__phone svg { width: 22px; height: 22px; }
+
+/* ------------------------------------------------------------------ */
+/* 15. FOOTER                                                          */
+/* ------------------------------------------------------------------ */
+.glp-footer { background: var(--glp-dark); color: var(--glp-text-on-dark); }
+.glp-footer__inner {
+  display: grid;
+  gap: 30px;
+  padding-block: 44px 28px;
+}
+.glp-footer__brand .glp-logo__name { font-size: 22px; }
+.glp-footer__tag { font-size: 13px; color: var(--glp-muted-on-dark); margin-top: 14px; max-width: 320px; }
+.glp-footer__col-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+.glp-footer__list { display: grid; gap: 12px; }
+.glp-footer__list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--glp-muted-on-dark); }
+.glp-footer__list a:hover { color: var(--glp-gold); }
+.glp-footer__list svg { width: 17px; height: 17px; color: var(--glp-gold); flex: none; }
+.glp-footer__social { display: flex; gap: 10px; margin-top: 6px; }
+.glp-footer__social a {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--glp-border-dark);
+  border-radius: 8px;
+  transition: all .15s ease;
+}
+.glp-footer__social a:hover { background: var(--glp-gold); border-color: var(--glp-gold); color: var(--glp-dark); }
+.glp-footer__social svg { width: 18px; height: 18px; }
+.glp-footer__bottom {
+  border-top: 1px solid var(--glp-border-dark);
+  padding-block: 18px 26px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--glp-muted-on-dark);
+}
+
+/* ------------------------------------------------------------------ */
+/* 16. BREAKPOINTS                                                     */
+/* ------------------------------------------------------------------ */
+
+/* >= 600px : ajustes de grid pequenos */
+@media (min-width: 600px) {
+  .glp-form__row { grid-template-columns: 1fr 1fr; }
+  .glp-trust-strip__inner { grid-template-columns: repeat(4, 1fr); }
+  .glp-ba__grid { grid-template-columns: 1fr 1fr; }
+  .glp-benefits__grid { grid-template-columns: repeat(3, 1fr); }
+  .glp-gallery__grid { grid-template-columns: repeat(4, 1fr); }
+  .glp-footer__inner { grid-template-columns: 1.4fr 1fr 1fr; }
+}
+
+/* >= 860px : pricing em 3 colunas, header com telefone */
+@media (min-width: 860px) {
+  :root { --glp-section-y: 72px; }
+  .glp-container { padding: 0 28px; }
+  .glp-pricing__grid { grid-template-columns: repeat(3, 1fr); align-items: center; }
+  .glp-price-card--featured { transform: scale(1.04); }
+  .glp-header__phone { display: inline-flex; }
+  .glp-header__cta-text { display: inline; }
+  .glp-benefits__grid { gap: 22px; }
+  .glp-testi__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* >= 1000px : hero em 2 colunas (texto + form), why em 2 colunas */
+@media (min-width: 1000px) {
+  .glp-hero__inner {
+    grid-template-columns: 1fr minmax(420px, 460px);
+    align-items: center;
+    gap: 48px;
+    padding-block: 64px 72px;
+  }
+  .glp-form-card { justify-self: end; }
+  .glp-why__inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+  .glp-ba__grid { gap: 24px; }
+}
