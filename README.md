@@ -71,9 +71,14 @@ Você tem duas opções. **A opção B é a recomendada** (mais fácil de manter
 Faça upload das imagens na **Biblioteca de Mídia** do WordPress e troque cada
 `src="REPLACE_..."` pela URL gerada. Lista do que precisa:
 
+> **Logo:** já está usando a oficial do site
+> (`.../uploads/2025/05/logo-black-gold.webp`). Como a arte é preta+dourada,
+> ela fica num "chip" branco (`.glp-logo__img`) para ficar legível sobre o
+> header/footer escuros. Se tiver uma versão **branca** da logo, troque o
+> `src` e remova o `background`/`padding` do `.glp-logo__img` no CSS.
+
 | Placeholder                | Onde aparece            | Sugestão de tamanho |
 |----------------------------|-------------------------|---------------------|
-| `REPLACE_logo.png`         | Header + Footer         | ~180×48 (PNG transp.)|
 | `REPLACE_hero-garage.jpg`  | Fundo do hero           | 1600×900            |
 | `REPLACE_before.jpg`       | Antes/Depois — Before   | 800×600             |
 | `REPLACE_after.jpg`        | Antes/Depois — After    | 800×600             |
@@ -117,11 +122,13 @@ inline, adicione um campo escondido:
 
 ## 📞 Dados de contato usados (confira!)
 
-Peguei da referência — **valide com o cliente** e troque num lugar só se mudar:
+Confirmados no site oficial (goldlinehomeservices.com):
 
 - **Telefone:** (774) 526-1670  → nos links `tel:+17745261670`
-- **E-mail:** info@goldlinehome.com  → no link `mailto:`
-- **Local:** Cape Cod, MA
+- **E-mail:** contact@goldlinehomeservices.com  → no link `mailto:`
+- **Local:** Cape Cod, MA (sede em Centerville, MA)
+- **Facebook:** https://www.facebook.com/goldlinepaintingma/
+- **Instagram:** https://www.instagram.com/goldlinehomeservices/
 
 Para trocar o telefone, busque por `7745261670` e `(774) 526-1670`.
 
@@ -144,8 +151,8 @@ Mudou lá → reflete na LP inteira.
 
 ## ✅ Checklist antes de publicar
 - [ ] Colar a Access Key do Web3Forms
-- [ ] Substituir todas as imagens `REPLACE_...`
-- [ ] Confirmar telefone e e-mail com o cliente
+- [ ] Substituir as imagens `REPLACE_...` (hero, before/after, galeria, truck)
+- [x] Logo oficial já aplicada (header + footer)
+- [x] Telefone, e-mail e redes sociais confirmados no site oficial
 - [ ] Apontar Privacy Policy / Terms of Service (links `#` no footer)
-- [ ] Preencher os links de Facebook/Instagram no footer
 - [ ] Testar o envio do formulário (chega o e-mail?)

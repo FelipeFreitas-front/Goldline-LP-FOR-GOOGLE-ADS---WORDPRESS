@@ -185,6 +185,17 @@
   padding-block: 12px;
 }
 .glp-logo { display: flex; align-items: center; gap: 10px; }
+/* Logo em "chip" branco: a arte é preta+dourada, então precisa de fundo claro
+   para ficar legível sobre o header/footer escuros. */
+.glp-logo__img {
+  display: block;
+  height: 48px;
+  width: auto;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
 .glp-logo img { max-height: 46px; width: auto; }
 .glp-logo__text { display: flex; flex-direction: column; line-height: 1.05; }
 .glp-logo__name { font-weight: 800; font-size: 20px; letter-spacing: .02em; }
