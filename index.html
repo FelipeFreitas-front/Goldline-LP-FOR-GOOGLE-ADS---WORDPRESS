@@ -75,10 +75,12 @@
               <div class="glp-form-progress__track"><div class="glp-form-progress__bar"></div></div>
             </div>
           </div>
-          <form class="glp-form" id="glp-lead-form" action="https://api.web3forms.com/submit" method="POST">
+          <form class="glp-form" id="form01" action="https://api.web3forms.com/submit" method="POST">
             <input type="hidden" name="access_key" value="4982c8e8-11b9-43aa-bb90-07169d527330">
             <input type="hidden" name="subject" value="Novo lead — Garage Floor Coating (LP Goldline)">
             <input type="hidden" name="from_name" value="LP Goldline — Garage Floor">
+            <!-- Redireciona apos o envio (fallback sem JS; com JS o redirect e feito no glp-scripts.js) -->
+            <input type="hidden" name="redirect" value="https://goldlinehomeservices.com/thanks/">
             <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important" aria-hidden="true">
 
             <div class="glp-form__fields">

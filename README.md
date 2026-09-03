@@ -105,18 +105,17 @@ No arquivo do hero (`sections/02-hero.html`) e no `index.html`, troque:
 pela sua **Access Key** do Web3Forms (https://web3forms.com).
 
 O que já vem pronto:
-- Envio via **AJAX** (sem sair da página) com mensagem de "Thank you!".
-- **Fallback**: se o JS não rodar, o form envia normalmente pela `action`.
+- **ID do formulário:** `form01`.
+- Envio via **AJAX** (sem sair da página) e, no sucesso, **redireciona para**
+  `https://goldlinehomeservices.com/thanks/`.
+- **Fallback sem JS:** o form envia pela `action` e o campo escondido
+  `redirect` leva para a mesma página de obrigado.
 - **Honeypot** anti-spam (`botcheck`) já incluído.
 - Campos enviados: `project_type`, `garage_size`, `name`, `phone`,
   `zip_code`, `email` + `subject`/`from_name`.
 
-Opcional: para redirecionar a uma página de obrigado do WP em vez da mensagem
-inline, adicione um campo escondido:
-```html
-<input type="hidden" name="redirect" value="https://SEUSITE.com/obrigado">
-```
-(e pode remover o bloco `.glp-form__success` se preferir o redirect.)
+Para trocar a página de obrigado, altere o `THANKS_URL` em `js/glp-scripts.js`
+**e** o `value` do `<input name="redirect">` no HTML.
 
 ---
 

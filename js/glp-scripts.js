@@ -8,7 +8,8 @@
   "use strict";
 
   /* ---------- 1. Formulário (Web3Forms) ---------- */
-  var form = document.getElementById("glp-lead-form");
+  var THANKS_URL = "https://goldlinehomeservices.com/thanks/";
+  var form = document.getElementById("form01");
 
   if (form) {
     var statusEl = document.getElementById("glp-form-status");
@@ -34,12 +35,9 @@
         .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, json: j }; }); })
         .then(function (r) {
           if (r.ok && r.json.success) {
-            // Sucesso: mostra a mensagem, completa a barra de progresso
-            form.classList.add("is-sent");
-            var bar = document.querySelector(".glp-form-progress__bar");
-            if (bar) { bar.style.width = "100%"; }
-            var label = document.querySelector(".glp-form-progress__label");
-            if (label) { label.textContent = "Step 2 of 2 — Done"; }
+            // Sucesso: leva para a página de obrigado
+            if (submitBtn) { submitBtn.textContent = "Redirecting..."; }
+            window.location.assign(THANKS_URL);
           } else {
             showError(r.json.message || "Something went wrong. Please try again.");
           }
