@@ -509,27 +509,8 @@
 /* 12. WHY GOLDLINE                                                    */
 /* ------------------------------------------------------------------ */
 .glp-why__inner { display: grid; gap: 28px; }
-.glp-why__media {
-  border-radius: var(--glp-radius);
-  overflow: hidden;
-  box-shadow: var(--glp-shadow);
-  /* Fallback enquanto a foto do caminhão não é enviada */
-  background: var(--glp-dark-3);
-  min-height: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+.glp-why__media { border-radius: var(--glp-radius); overflow: hidden; box-shadow: var(--glp-shadow); }
 .glp-why__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.glp-why__media::after {
-  content: "Foto do caminhão / equipe (a enviar)";
-  color: var(--glp-muted-on-dark);
-  font-size: 13px;
-  padding: 0 16px;
-  text-align: center;
-}
-/* Quando a imagem carrega, ela cobre o placeholder */
-.glp-why__media img { position: relative; z-index: 1; }
 .glp-why__eyebrow { color: var(--glp-gold); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .glp-why__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.12; margin-top: 12px; color: #fff; }
 .glp-why__list { margin-top: 22px; display: grid; gap: 14px; }
