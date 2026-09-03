@@ -34,7 +34,24 @@ Goldline Painting/
 
 ---
 
-## 🚀 Como usar no WordPress + Elementor
+## ⚡ Jeito mais rápido: arquivo único (`goldline-lp-elementor.html`)
+
+Já existe um arquivo **`goldline-lp-elementor.html`** com **tudo embutido**
+(fonte + CSS em `<style>` + markup + JS em `<script>`). É só:
+1. No Elementor, adicionar **um widget HTML** (de preferência numa página
+   com template **Elementor Full Width / Canvas**).
+2. Abrir o `goldline-lp-elementor.html`, copiar **todo o conteúdo** e colar
+   no widget.
+3. Pronto — não precisa carregar CSS/JS separado.
+
+> Falta só configurar `/thanks/` no WordPress e os links de Privacy/Terms.
+> Para editar depois, mexa nos arquivos-fonte (`css/`, `sections/`) e gere o
+> arquivo único de novo, **ou** edite direto o `goldline-lp-elementor.html`.
+
+Se preferir manter CSS/JS separados (mais fácil de manter a longo prazo), use
+uma das opções abaixo.
+
+## 🚀 Como usar no WordPress + Elementor (CSS/JS separados)
 
 Você tem duas opções. **A opção B é a recomendada** (mais fácil de manter).
 

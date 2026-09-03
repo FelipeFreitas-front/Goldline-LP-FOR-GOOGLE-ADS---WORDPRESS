@@ -1,0 +1,1046 @@
+﻿<!-- ============================================================
+     GOLDLINE PAINTING - LP Garage Floor Coating (Cape Cod, MA)
+     ARQUIVO UNICO para Elementor: cole TUDO isto em UM widget HTML.
+     Contem: fonte (Google Fonts) + CSS (<style>) + markup + JS (<script>).
+     Classes com prefixo glp- e CSS escopado em .glp-lp (sem conflito).
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================================
+   GOLDLINE PAINTING â€” LANDING PAGE (Garage Floor Coating / Cape Cod, MA)
+   CSS GLOBAL â€” prefixo "glp-" para nÃ£o conflitar com o tema / Elementor.
+   Mobile-first. Todos os ajustes de cor/espaÃ§amento ficam nos tokens
+   (:root) logo abaixo. Ordem das seÃ§Ãµes segue a referÃªncia.
+   ===================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* 1. TOKENS (mude aqui e reflete em toda a LP)                        */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Cores da marca */
+  --glp-gold:        #f6b913;
+  --glp-gold-dark:   #d99e00;
+  --glp-green:       #2ead46;
+  --glp-green-dark:  #229038;
+  --glp-dark:        #0e0e0e;
+  --glp-dark-2:      #171717;
+  --glp-dark-3:      #202020;
+
+  /* Neutros */
+  --glp-white:       #ffffff;
+  --glp-bg-light:    #f7f7f7;
+  --glp-text:        #1a1a1a;
+  --glp-text-muted:  #5f5f5f;
+  --glp-text-on-dark:#e7e7e7;
+  --glp-muted-on-dark:#a9a9a9;
+  --glp-border:      #e6e6e6;
+  --glp-border-dark: #333333;
+
+  /* Tipografia */
+  --glp-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+              Roboto, Helvetica, Arial, sans-serif;
+
+  /* Layout */
+  --glp-container: 1180px;
+  --glp-radius:    14px;
+  --glp-radius-sm: 10px;
+  --glp-radius-pill: 999px;
+
+  /* Sombra */
+  --glp-shadow:    0 18px 45px rgba(0, 0, 0, .18);
+  --glp-shadow-sm: 0 6px 18px rgba(0, 0, 0, .08);
+
+  /* EspaÃ§amento vertical das seÃ§Ãµes (dobras): sempre 60px topo/base */
+  --glp-section-y: 60px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. RESET LOCAL (escopado ao wrapper .glp-lp para nÃ£o vazar no WP)   */
+/* ------------------------------------------------------------------ */
+.glp-lp * { margin: 0; padding: 0; box-sizing: border-box; }
+
+.glp-lp {
+  font-family: var(--glp-font);
+  color: var(--glp-text);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: var(--glp-white);
+  overflow-x: hidden;
+}
+
+.glp-lp img { max-width: 100%; height: auto; display: block; }
+.glp-lp a   { text-decoration: none; }
+/* Links herdam a cor do contexto â€” EXCETO os botÃµes, que tÃªm cor prÃ³pria
+   na variante (.glp-btn--gold/green/dark). Sem o :not(.glp-btn), o
+   color:inherit venceria a cor do botÃ£o por especificidade. */
+.glp-lp a:not(.glp-btn) { color: inherit; }
+.glp-lp ul  { list-style: none; }
+.glp-lp button { font-family: inherit; cursor: pointer; }
+
+/* Acessibilidade: respeita quem pediu menos animaÃ§Ã£o */
+@media (prefers-reduced-motion: reduce) {
+  .glp-lp * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. UTILITÃRIOS                                                      */
+/* ------------------------------------------------------------------ */
+.glp-container {
+  width: 100%;
+  max-width: var(--glp-container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.glp-section { padding-block: var(--glp-section-y); }
+.glp-section--light { background: var(--glp-bg-light); }
+.glp-section--dark  { background: var(--glp-dark); color: var(--glp-text-on-dark); }
+
+.glp-eyebrow {
+  display: inline-block;
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: var(--glp-radius-pill);
+}
+
+.glp-h2 {
+  font-size: clamp(26px, 5.4vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  text-align: center;
+}
+.glp-h2 .glp-accent { color: var(--glp-gold); }
+
+.glp-sub {
+  text-align: center;
+  color: var(--glp-text-muted);
+  max-width: 620px;
+  margin: 14px auto 0;
+  font-size: 16px;
+}
+.glp-section--dark .glp-sub { color: var(--glp-muted-on-dark); }
+
+/* BotÃµes */
+.glp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  border-radius: var(--glp-radius-sm);
+  transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+.glp-btn:active { transform: translateY(1px); }
+
+.glp-btn--green {
+  background: var(--glp-green);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(46, 173, 70, .28);
+}
+.glp-btn--green:hover { background: var(--glp-green-dark); }
+
+.glp-btn--gold {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+}
+.glp-btn--gold:hover { background: var(--glp-gold-dark); }
+
+.glp-btn--dark {
+  background: var(--glp-dark);
+  color: #fff;
+}
+.glp-btn--dark:hover { background: #000; }
+
+.glp-btn--block { display: flex; width: 100%; }
+
+/* ------------------------------------------------------------------ */
+/* 4. TOPBAR + HEADER                                                  */
+/* ------------------------------------------------------------------ */
+.glp-topbar {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+}
+
+.glp-header {
+  background: var(--glp-dark);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.glp-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+}
+.glp-logo { display: flex; align-items: center; gap: 10px; }
+/* Logo em "chip" branco: a arte Ã© preta+dourada, entÃ£o precisa de fundo claro
+   para ficar legÃ­vel sobre o header/footer escuros. */
+.glp-logo__img {
+  display: block;
+  height: 48px;
+  width: auto;
+  background: #fff;
+  padding: 6px 12px;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+.glp-logo img { max-height: 46px; width: auto; }
+.glp-logo__text { display: flex; flex-direction: column; line-height: 1.05; }
+.glp-logo__name { font-weight: 800; font-size: 20px; letter-spacing: .02em; }
+.glp-logo__name span { color: var(--glp-gold); }
+.glp-logo__tag  { font-size: 9px; letter-spacing: .18em; color: var(--glp-muted-on-dark); text-transform: uppercase; }
+
+.glp-header__actions { display: flex; align-items: center; gap: 14px; }
+.glp-header__phone {
+  display: none;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+.glp-header__phone:hover { color: var(--glp-gold); }
+.glp-header .glp-btn { padding: 12px 20px; font-size: 13px; }
+.glp-header__cta-text { display: none; }
+
+/* ------------------------------------------------------------------ */
+/* 5. HERO                                                             */
+/* ------------------------------------------------------------------ */
+.glp-hero {
+  position: relative;
+  background: var(--glp-dark);
+  color: #fff;
+  isolation: isolate;
+}
+.glp-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.glp-hero::after { /* overlay escuro pra leitura */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,.86) 0%, rgba(10,10,10,.78) 60%, rgba(10,10,10,.9) 100%);
+  z-index: -1;
+}
+.glp-hero__inner {
+  display: grid;
+  gap: 32px;
+  padding-block: 40px 48px;
+}
+.glp-hero__badge {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 15px;
+  border-radius: var(--glp-radius-pill);
+  align-self: start;
+  display: inline-block;
+}
+.glp-hero__title {
+  font-size: clamp(30px, 8vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  margin-top: 18px;
+}
+.glp-hero__title span { color: var(--glp-gold); display: block; }
+.glp-hero__text {
+  margin-top: 16px;
+  color: #d4d4d4;
+  font-size: 16px;
+  max-width: 520px;
+}
+.glp-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 26px;
+  margin-top: 26px;
+}
+.glp-hero__trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+.glp-hero__trust-item svg { width: 26px; height: 26px; flex: none; color: var(--glp-gold); }
+.glp-hero__trust-item span { line-height: 1.2; }
+.glp-hero__cta-row { margin-top: 28px; }
+.glp-hero__note { margin-top: 14px; font-size: 13px; color: #bdbdbd; }
+
+/* Form card do hero */
+.glp-form-card {
+  background: #fff;
+  color: var(--glp-text);
+  border-radius: var(--glp-radius);
+  box-shadow: var(--glp-shadow);
+  padding: 22px;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+}
+.glp-form-card__head { text-align: center; }
+.glp-form-card__title { font-size: 20px; font-weight: 800; }
+.glp-form-card__title span { color: var(--glp-gold); }
+.glp-form-progress { margin: 14px 0 4px; }
+.glp-form-progress__label { font-size: 11px; color: var(--glp-text-muted); font-weight: 600; text-align: center; margin-bottom: 6px; }
+.glp-form-progress__track { height: 5px; background: #ececec; border-radius: var(--glp-radius-pill); overflow: hidden; }
+.glp-form-progress__bar { height: 100%; width: 50%; background: var(--glp-gold); border-radius: inherit; transition: width .3s ease; }
+
+/* ------------------------------------------------------------------ */
+/* 6. FORMULÃRIO (Web3Forms)                                          */
+/* ------------------------------------------------------------------ */
+.glp-form { margin-top: 8px; }
+.glp-field { margin-top: 14px; }
+.glp-field__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 7px;
+}
+.glp-field__label small { font-weight: 500; color: var(--glp-text-muted); }
+
+.glp-input {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius-sm);
+  background: #fafafa;
+  transition: border-color .15s ease, box-shadow .15s ease;
+  color: var(--glp-text);
+}
+.glp-input::placeholder { color: #9a9a9a; }
+.glp-input:focus {
+  outline: none;
+  border-color: var(--glp-gold);
+  box-shadow: 0 0 0 3px rgba(246, 185, 19, .18);
+  background: #fff;
+}
+
+/* Grupo de opÃ§Ãµes em "pÃ­lulas" (radio estilizado, sem JS pra selecionar) */
+.glp-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.glp-choices--3 { grid-template-columns: repeat(3, 1fr); }
+.glp-choice { position: relative; }
+.glp-choice input {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+.glp-choice__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 8px;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius-sm);
+  background: #fafafa;
+  color: #555;
+  transition: all .15s ease;
+  min-height: 44px;
+  line-height: 1.1;
+}
+.glp-choice__box svg { width: 16px; height: 16px; flex: none; }
+.glp-choice input:checked + .glp-choice__box {
+  border-color: var(--glp-gold);
+  background: #fff8e6;
+  color: var(--glp-dark);
+  box-shadow: inset 0 0 0 1px var(--glp-gold);
+}
+.glp-choice input:focus-visible + .glp-choice__box {
+  box-shadow: 0 0 0 3px rgba(246, 185, 19, .25);
+}
+
+.glp-form__row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.glp-form__submit { margin-top: 18px; }
+.glp-form__privacy {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--glp-text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  justify-content: center;
+  text-align: center;
+}
+.glp-form__privacy svg { width: 13px; height: 13px; flex: none; margin-top: 2px; color: var(--glp-green); }
+
+/* Estados de envio */
+.glp-form__status { margin-top: 12px; font-size: 13px; text-align: center; font-weight: 600; display: none; }
+.glp-form__status--error   { display: block; color: #c0392b; }
+.glp-form__success {
+  display: none;
+  text-align: center;
+  padding: 26px 10px;
+}
+.glp-form__success svg { width: 52px; height: 52px; color: var(--glp-green); margin: 0 auto 12px; }
+.glp-form__success h3 { font-size: 20px; font-weight: 800; }
+.glp-form__success p  { color: var(--glp-text-muted); margin-top: 6px; font-size: 14px; }
+.glp-form.is-sent .glp-form__fields { display: none; }
+.glp-form.is-sent .glp-form__success { display: block; }
+.glp-btn.is-loading { opacity: .7; pointer-events: none; }
+
+/* ------------------------------------------------------------------ */
+/* 7. TRUST STRIP                                                      */
+/* ------------------------------------------------------------------ */
+.glp-trust-strip { background: #fff; border-bottom: 1px solid var(--glp-border); }
+.glp-trust-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 12px;
+  padding-block: 26px;
+}
+.glp-trust-strip__item { display: flex; align-items: center; gap: 12px; }
+.glp-trust-strip__item svg { width: 30px; height: 30px; color: var(--glp-gold); flex: none; }
+.glp-trust-strip__item b { display: block; font-size: 14px; font-weight: 700; line-height: 1.2; }
+.glp-trust-strip__item span { font-size: 13px; color: var(--glp-text-muted); }
+
+/* ------------------------------------------------------------------ */
+/* 8. PRICING                                                          */
+/* ------------------------------------------------------------------ */
+.glp-pricing__head { text-align: center; }
+.glp-pricing__head .glp-eyebrow { margin-bottom: 16px; }
+.glp-pricing__grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+.glp-price-card {
+  position: relative;
+  background: var(--glp-dark-2);
+  border: 1.5px solid var(--glp-border-dark);
+  border-radius: var(--glp-radius);
+  padding: 30px 22px;
+  text-align: center;
+}
+.glp-price-card--featured {
+  border-color: var(--glp-gold);
+  box-shadow: 0 0 0 1px var(--glp-gold), 0 20px 45px rgba(0,0,0,.4);
+}
+.glp-price-card__tag {
+  display: inline-block;
+  background: rgba(246,185,19,.16);
+  color: var(--glp-gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--glp-radius-pill);
+}
+.glp-price-card__badge {
+  position: absolute;
+  top: -13px; left: 50%; transform: translateX(-50%);
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--glp-radius-pill);
+  white-space: nowrap;
+}
+.glp-price-card__name { font-size: 24px; font-weight: 800; margin-top: 18px; color: #fff; }
+.glp-price-card__divider { width: 46px; height: 3px; background: var(--glp-gold); border-radius: 2px; margin: 16px auto; }
+.glp-price-card__from { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--glp-muted-on-dark); }
+.glp-price-card__value { font-size: 44px; font-weight: 800; color: var(--glp-gold); line-height: 1; margin-top: 6px; }
+.glp-pricing__cta { text-align: center; margin-top: 30px; }
+.glp-pricing__disclaimer { text-align: center; font-size: 12px; color: var(--glp-muted-on-dark); margin-top: 18px; }
+
+/* 9. (Before/After removido â€” sem foto de "antes". Reintroduzir aqui se
+      um dia houver par antes/depois real.) */
+
+/* ------------------------------------------------------------------ */
+/* 10. BENEFITS                                                        */
+/* ------------------------------------------------------------------ */
+.glp-benefits__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+.glp-benefit {
+  background: #fff;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius);
+  padding: 26px 22px;
+  box-shadow: var(--glp-shadow-sm);
+}
+.glp-benefit__icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: #fff8e6;
+  margin-bottom: 16px;
+}
+.glp-benefit__icon svg { width: 28px; height: 28px; color: var(--glp-gold-dark); }
+.glp-benefit__title { font-size: 18px; font-weight: 700; }
+.glp-benefit__text { font-size: 14px; color: var(--glp-text-muted); margin-top: 8px; }
+
+/* ------------------------------------------------------------------ */
+/* 11. GALLERY                                                         */
+/* ------------------------------------------------------------------ */
+.glp-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 30px;
+}
+.glp-gallery__item { border-radius: var(--glp-radius-sm); overflow: hidden; box-shadow: var(--glp-shadow-sm); }
+.glp-gallery__item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .35s ease; }
+.glp-gallery__item:hover img { transform: scale(1.05); }
+
+/* ------------------------------------------------------------------ */
+/* 12. WHY GOLDLINE                                                    */
+/* ------------------------------------------------------------------ */
+.glp-why__inner { display: grid; gap: 28px; }
+.glp-why__media { border-radius: var(--glp-radius); overflow: hidden; box-shadow: var(--glp-shadow); }
+.glp-why__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.glp-why__eyebrow { color: var(--glp-gold); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.glp-why__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.12; margin-top: 12px; color: #fff; }
+.glp-why__list { margin-top: 22px; display: grid; gap: 14px; }
+.glp-why__list li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; }
+.glp-why__list svg { width: 22px; height: 22px; color: var(--glp-gold); flex: none; }
+.glp-why__cta { margin-top: 28px; }
+
+/* ------------------------------------------------------------------ */
+/* 13. TESTIMONIALS                                                    */
+/* ------------------------------------------------------------------ */
+.glp-testi__grid { display: grid; gap: 16px; margin-top: 32px; }
+.glp-testi-card {
+  background: #fff;
+  border: 1px solid var(--glp-border);
+  border-radius: var(--glp-radius);
+  padding: 26px 22px;
+  box-shadow: var(--glp-shadow-sm);
+  text-align: center;
+}
+.glp-testi-card__stars { display: flex; justify-content: center; gap: 3px; margin-bottom: 14px; }
+.glp-testi-card__stars svg { width: 18px; height: 18px; color: var(--glp-gold); }
+.glp-testi-card__text { font-size: 15px; font-style: italic; color: #333; }
+.glp-testi-card__author { margin-top: 14px; font-weight: 700; font-size: 14px; color: var(--glp-text); }
+
+/* ------------------------------------------------------------------ */
+/* 14. FINAL CTA                                                       */
+/* ------------------------------------------------------------------ */
+.glp-final-cta {
+  background: var(--glp-gold);
+  color: var(--glp-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.glp-final-cta__inner { padding-block: 60px; position: relative; z-index: 1; }
+.glp-final-cta__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.15; }
+.glp-final-cta__text { margin-top: 10px; font-size: 16px; font-weight: 500; }
+.glp-final-cta__btn { margin-top: 24px; }
+.glp-final-cta__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 800;
+}
+.glp-final-cta__phone svg { width: 22px; height: 22px; }
+
+/* ------------------------------------------------------------------ */
+/* 15. FOOTER                                                          */
+/* ------------------------------------------------------------------ */
+.glp-footer { background: var(--glp-dark); color: var(--glp-text-on-dark); }
+.glp-footer__inner {
+  display: grid;
+  gap: 30px;
+  padding-block: 44px 28px;
+}
+.glp-footer__brand .glp-logo__name { font-size: 22px; }
+.glp-footer__tag { font-size: 13px; color: var(--glp-muted-on-dark); margin-top: 14px; max-width: 320px; }
+.glp-footer__col-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+.glp-footer__list { display: grid; gap: 12px; }
+.glp-footer__list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--glp-muted-on-dark); }
+.glp-footer__list a:hover { color: var(--glp-gold); }
+.glp-footer__list svg { width: 17px; height: 17px; color: var(--glp-gold); flex: none; }
+.glp-footer__social { display: flex; gap: 10px; margin-top: 6px; }
+.glp-footer__social a {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--glp-border-dark);
+  border-radius: 8px;
+  transition: all .15s ease;
+}
+.glp-footer__social a:hover { background: var(--glp-gold); border-color: var(--glp-gold); color: var(--glp-dark); }
+.glp-footer__social svg { width: 18px; height: 18px; }
+.glp-footer__bottom {
+  border-top: 1px solid var(--glp-border-dark);
+  padding-block: 18px 26px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--glp-muted-on-dark);
+}
+
+/* ------------------------------------------------------------------ */
+/* 16. BREAKPOINTS                                                     */
+/* ------------------------------------------------------------------ */
+
+/* >= 600px : ajustes de grid pequenos */
+@media (min-width: 600px) {
+  .glp-form__row { grid-template-columns: 1fr 1fr; }
+  .glp-trust-strip__inner { grid-template-columns: repeat(4, 1fr); }
+  .glp-benefits__grid { grid-template-columns: repeat(3, 1fr); }
+  .glp-gallery__grid { grid-template-columns: repeat(4, 1fr); }
+  .glp-footer__inner { grid-template-columns: 1.4fr 1fr 1fr; }
+}
+
+/* >= 860px : pricing em 3 colunas, header com telefone */
+@media (min-width: 860px) {
+  .glp-container { padding: 0 28px; }
+  .glp-pricing__grid { grid-template-columns: repeat(3, 1fr); align-items: center; }
+  .glp-price-card--featured { transform: scale(1.04); }
+  .glp-header__phone { display: inline-flex; }
+  .glp-header__cta-text { display: inline; }
+  .glp-benefits__grid { gap: 22px; }
+  .glp-testi__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* >= 1000px : hero em 2 colunas (texto + form), why em 2 colunas */
+@media (min-width: 1000px) {
+  .glp-hero__inner {
+    grid-template-columns: 1fr minmax(420px, 460px);
+    align-items: center;
+    gap: 48px;
+    padding-block: 64px 72px;
+  }
+  .glp-form-card { justify-self: end; }
+  .glp-why__inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+}
+</style>
+
+<div class="glp-lp">
+
+    <!-- As seÃ§Ãµes abaixo sÃ£o cÃ³pias dos arquivos em /sections.
+         No WordPress/Elementor vocÃª cola cada bloco num widget HTML.
+         Aqui elas estÃ£o inline sÃ³ para o preview local funcionar. -->
+
+    <!-- ===== 01 TOPBAR + HEADER ===== -->
+    <div class="glp-topbar">
+      15+ Years of Experience &bull; Fully Insured &bull; Free Estimates
+    </div>
+    <header class="glp-header">
+      <div class="glp-container glp-header__inner">
+        <a href="#glp-top" class="glp-logo" aria-label="Goldline Painting &amp; Home Services">
+          <img class="glp-logo__img" src="https://goldlinehomeservices.com/wp-content/uploads/2025/05/logo-black-gold.webp" alt="Goldline Painting &amp; Home Services" width="682" height="262">
+        </a>
+        <div class="glp-header__actions">
+          <a href="tel:+17745261670" class="glp-header__phone">(774) 526-1670</a>
+          <a href="#glp-estimate" class="glp-btn glp-btn--gold"><span class="glp-header__cta-text">Get a </span>Free Estimate</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== 02 HERO + FORM ===== -->
+    <section class="glp-hero" id="glp-top">
+      <img class="glp-hero__bg" src="https://goldlinehomeservices.com/wp-content/uploads/2026/08/Residential_garage_interior_phot%E2%80%A6_202608121717.jpeg" alt="" aria-hidden="true" fetchpriority="high" width="1200" height="896" onerror="this.style.display='none'">
+      <div class="glp-container glp-hero__inner">
+        <div class="glp-hero__content">
+          <span class="glp-hero__badge">Special Pricing Available</span>
+          <h1 class="glp-hero__title">Special Pricing on <span>Garage Floor Coating</span> in Cape Cod, MA</h1>
+          <p class="glp-hero__text">Upgrade your garage with a durable, professional epoxy floor coating designed for a clean finish and long-lasting performance.</p>
+          <div class="glp-hero__trust">
+            <div class="glp-hero__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <span>15+ Years<br>Experience</span>
+            </div>
+            <div class="glp-hero__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              <span>Fully<br>Insured</span>
+            </div>
+            <div class="glp-hero__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+              <span>Free<br>Estimates</span>
+            </div>
+          </div>
+          <div class="glp-hero__cta-row">
+            <a href="#glp-estimate" class="glp-btn glp-btn--green">Get My Free Estimate</a>
+          </div>
+          <p class="glp-hero__note">Fast Response &bull; No Obligation</p>
+        </div>
+
+        <div class="glp-form-card" id="glp-estimate">
+          <div class="glp-form-card__head">
+            <h2 class="glp-form-card__title">Get Your <span>Free Estimate</span></h2>
+            <div class="glp-form-progress">
+              <div class="glp-form-progress__label">Step 1 of 2</div>
+              <div class="glp-form-progress__track"><div class="glp-form-progress__bar"></div></div>
+            </div>
+          </div>
+          <form class="glp-form" id="form01" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="4982c8e8-11b9-43aa-bb90-07169d527330">
+            <input type="hidden" name="subject" value="Novo lead â€” Garage Floor Coating (LP Goldline)">
+            <input type="hidden" name="from_name" value="LP Goldline â€” Garage Floor">
+            <!-- Redireciona apos o envio (fallback sem JS; com JS o redirect e feito no glp-scripts.js) -->
+            <input type="hidden" name="redirect" value="https://goldlinehomeservices.com/thanks/">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important" aria-hidden="true">
+
+            <div class="glp-form__fields">
+              <div class="glp-field">
+                <span class="glp-field__label">Project Type</span>
+                <div class="glp-choices">
+                  <label class="glp-choice">
+                    <input type="radio" name="project_type" value="Garage Floor" required checked>
+                    <span class="glp-choice__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 21h18M7 21v-6h10v6"/></svg>Garage Floor</span>
+                  </label>
+                  <label class="glp-choice">
+                    <input type="radio" name="project_type" value="Basement Floor">
+                    <span class="glp-choice__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>Basement Floor</span>
+                  </label>
+                  <label class="glp-choice">
+                    <input type="radio" name="project_type" value="Commercial Floor">
+                    <span class="glp-choice__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v16M14 9h6a1 1 0 0 1 1 1v11M3 21h18"/></svg>Commercial Floor</span>
+                  </label>
+                  <label class="glp-choice">
+                    <input type="radio" name="project_type" value="Other">
+                    <span class="glp-choice__box">&bull;&bull;&bull;&nbsp; Other</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="glp-field">
+                <span class="glp-field__label">Garage Size</span>
+                <div class="glp-choices glp-choices--3">
+                  <label class="glp-choice"><input type="radio" name="garage_size" value="1 Car" required checked><span class="glp-choice__box">1 Car</span></label>
+                  <label class="glp-choice"><input type="radio" name="garage_size" value="2 Cars"><span class="glp-choice__box">2 Cars</span></label>
+                  <label class="glp-choice"><input type="radio" name="garage_size" value="3 Cars"><span class="glp-choice__box">3 Cars</span></label>
+                </div>
+              </div>
+
+              <div class="glp-form__row">
+                <div class="glp-field">
+                  <label class="glp-field__label" for="glp-name">Full Name</label>
+                  <input class="glp-input" type="text" id="glp-name" name="name" placeholder="Enter your full name" required autocomplete="name">
+                </div>
+                <div class="glp-field">
+                  <label class="glp-field__label" for="glp-phone">Phone Number</label>
+                  <input class="glp-input" type="tel" id="glp-phone" name="phone" placeholder="(555) 123-4567" required autocomplete="tel">
+                </div>
+              </div>
+
+              <div class="glp-form__row">
+                <div class="glp-field">
+                  <label class="glp-field__label" for="glp-zip">ZIP Code</label>
+                  <input class="glp-input" type="text" id="glp-zip" name="zip_code" placeholder="Enter your ZIP code" inputmode="numeric" required autocomplete="postal-code">
+                </div>
+                <div class="glp-field">
+                  <label class="glp-field__label" for="glp-email">Email <small>(optional)</small></label>
+                  <input class="glp-input" type="email" id="glp-email" name="email" placeholder="you@example.com" autocomplete="email">
+                </div>
+              </div>
+
+              <button type="submit" class="glp-btn glp-btn--green glp-btn--block glp-form__submit">Get My Free Estimate</button>
+
+              <p class="glp-form__privacy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                We respect your privacy. Your information is secure.
+              </p>
+              <p class="glp-form__status" id="glp-form-status" role="alert"></p>
+            </div>
+
+            <div class="glp-form__success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <h3>Thank you!</h3>
+              <p>We received your request and will reach out shortly with your free estimate.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 TRUST STRIP ===== -->
+    <section class="glp-trust-strip">
+      <div class="glp-container glp-trust-strip__inner">
+        <div class="glp-trust-strip__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>15+ Years</b><span>Experience</span></div></div>
+        <div class="glp-trust-strip__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Fully</b><span>Insured</span></div></div>
+        <div class="glp-trust-strip__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><div><b>Cape Cod</b><span>Local Service</span></div></div>
+        <div class="glp-trust-strip__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg><div><b>Free</b><span>Estimates</span></div></div>
+      </div>
+    </section>
+
+    <!-- ===== 04 PRICING ===== -->
+    <section class="glp-section glp-section--dark glp-pricing">
+      <div class="glp-container">
+        <div class="glp-pricing__head">
+          <span class="glp-eyebrow">Special Pricing</span>
+          <h2 class="glp-h2">Upgrade Your Garage With <span class="glp-accent">Special Epoxy Pricing</span></h2>
+          <p class="glp-sub">Choose the option that best matches your garage and request your free estimate today.</p>
+        </div>
+        <div class="glp-pricing__grid">
+          <div class="glp-price-card">
+            <span class="glp-price-card__tag">1 Car</span>
+            <div class="glp-price-card__name">1-Car Garage</div>
+            <div class="glp-price-card__divider"></div>
+            <div class="glp-price-card__from">Starting At</div>
+            <div class="glp-price-card__value">$1,990</div>
+          </div>
+          <div class="glp-price-card glp-price-card--featured">
+            <span class="glp-price-card__badge">Most Popular</span>
+            <span class="glp-price-card__tag">2 Cars</span>
+            <div class="glp-price-card__name">2-Car Garage</div>
+            <div class="glp-price-card__divider"></div>
+            <div class="glp-price-card__from">Starting At</div>
+            <div class="glp-price-card__value">$2,490</div>
+          </div>
+          <div class="glp-price-card">
+            <span class="glp-price-card__tag">3 Cars</span>
+            <div class="glp-price-card__name">3-Car Garage</div>
+            <div class="glp-price-card__divider"></div>
+            <div class="glp-price-card__from">Starting At</div>
+            <div class="glp-price-card__value">$2,990</div>
+          </div>
+        </div>
+        <div class="glp-pricing__cta"><a href="#glp-estimate" class="glp-btn glp-btn--green">Get a Free Estimate</a></div>
+        <p class="glp-pricing__disclaimer">Final pricing may vary based on floor condition, size, repairs and selected finish.</p>
+      </div>
+    </section>
+
+    <!-- ===== 06 BENEFITS ===== -->
+    <section class="glp-section glp-section--light glp-benefits">
+      <div class="glp-container">
+        <h2 class="glp-h2">More Than Just a Better-Looking Garage</h2>
+        <div class="glp-benefits__grid">
+          <div class="glp-benefit">
+            <div class="glp-benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+            <h3 class="glp-benefit__title">Durable Finish</h3>
+            <p class="glp-benefit__text">Built for everyday garage use and designed for long-lasting performance.</p>
+          </div>
+          <div class="glp-benefit">
+            <div class="glp-benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 14.06 4 20M14 9l1 1M12 2l1.5 3.5L17 7l-3.5 1.5L12 12l-1.5-3.5L7 7l3.5-1.5z"/></svg></div>
+            <h3 class="glp-benefit__title">Easy to Maintain</h3>
+            <p class="glp-benefit__text">A cleaner surface that's easier to maintain than unfinished concrete.</p>
+          </div>
+          <div class="glp-benefit">
+            <div class="glp-benefit__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20M4 18l1-9a2 2 0 0 1 2-1.8h10A2 2 0 0 1 19 9l1 9M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+            <h3 class="glp-benefit__title">Professional Installation</h3>
+            <p class="glp-benefit__text">Proper surface preparation and professional application for a premium finish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 GALLERY ===== -->
+    <section class="glp-section glp-gallery">
+      <div class="glp-container">
+        <h2 class="glp-h2">Garage Floor Transformations</h2>
+        <div class="glp-gallery__grid">
+          <div class="glp-gallery__item"><img src="https://goldlinehomeservices.com/wp-content/uploads/2026/04/port-goldline-epoxy-01.webp" alt="Epoxy garage floor transformation" loading="lazy" width="1000" height="700"></div>
+          <div class="glp-gallery__item"><img src="https://goldlinehomeservices.com/wp-content/uploads/2026/04/port-goldline-epoxy-02.webp" alt="Epoxy garage floor transformation" loading="lazy" width="1000" height="700"></div>
+          <div class="glp-gallery__item"><img src="https://goldlinehomeservices.com/wp-content/uploads/2026/04/port-goldline-epoxy-03.webp" alt="Epoxy garage floor transformation" loading="lazy" width="1000" height="700"></div>
+          <div class="glp-gallery__item"><img src="https://goldlinehomeservices.com/wp-content/uploads/2026/04/port-goldline-epoxy-04.webp" alt="Epoxy garage floor transformation" loading="lazy" width="1000" height="700"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08 WHY GOLDLINE ===== -->
+    <section class="glp-section glp-section--dark glp-why">
+      <div class="glp-container glp-why__inner">
+        <div class="glp-why__media"><img src="https://goldlinehomeservices.com/wp-content/uploads/2026/09/ChatGPT-Image-Sep-2-2026-05_55_10-PM-7.png" alt="Goldline service truck in Cape Cod" loading="lazy" width="1448" height="1086"></div>
+        <div class="glp-why__content">
+          <span class="glp-why__eyebrow">Why Goldline</span>
+          <h2 class="glp-why__title">Local Experience You Can Count On</h2>
+          <ul class="glp-why__list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>15+ Years of Experience</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Fully Insured</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Professional Workmanship</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Serving Cape Cod, MA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Free Estimates</li>
+          </ul>
+          <div class="glp-why__cta"><a href="#glp-estimate" class="glp-btn glp-btn--gold">Request Your Free Estimate</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 09 TESTIMONIALS ===== -->
+    <section class="glp-section glp-section--light glp-testi">
+      <div class="glp-container">
+        <h2 class="glp-h2">What Our Customers Say</h2>
+        <div class="glp-testi__grid">
+          <div class="glp-testi-card">
+            <div class="glp-testi-card__stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            </div>
+            <p class="glp-testi-card__text">"Goldline did an amazing job on our garage floor. It looks incredible and is so much easier to keep clean."</p>
+            <p class="glp-testi-card__author">&mdash; Mike R., Hyannis, MA</p>
+          </div>
+          <div class="glp-testi-card">
+            <div class="glp-testi-card__stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            </div>
+            <p class="glp-testi-card__text">"Professional, punctual, and the quality of work is top notch. Highly recommend!"</p>
+            <p class="glp-testi-card__author">&mdash; Sarah T., Dennis, MA</p>
+          </div>
+          <div class="glp-testi-card">
+            <div class="glp-testi-card__stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            </div>
+            <p class="glp-testi-card__text">"Our garage floor went from stained and worn to showroom quality. Worth every penny!"</p>
+            <p class="glp-testi-card__author">&mdash; John P., Sandwich, MA</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 FINAL CTA ===== -->
+    <section class="glp-final-cta">
+      <div class="glp-container glp-final-cta__inner">
+        <h2 class="glp-final-cta__title">Ready to Upgrade Your Garage Floor?</h2>
+        <p class="glp-final-cta__text">Request your free estimate and find the right coating option for your garage.</p>
+        <div class="glp-final-cta__btn"><a href="#glp-estimate" class="glp-btn glp-btn--dark">Get My Free Estimate</a></div>
+        <a href="tel:+17745261670" class="glp-final-cta__phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (774) 526-1670
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== 11 FOOTER ===== -->
+    <footer class="glp-footer">
+      <div class="glp-container glp-footer__inner">
+        <div class="glp-footer__brand">
+          <a href="#glp-top" class="glp-logo" aria-label="Goldline Painting &amp; Home Services">
+            <img class="glp-logo__img" src="https://goldlinehomeservices.com/wp-content/uploads/2025/05/logo-black-gold.webp" alt="Goldline Painting &amp; Home Services" width="682" height="262">
+          </a>
+          <p class="glp-footer__tag">Professional painting and home services with a focus on quality, integrity and customer satisfaction throughout Cape Cod, Massachusetts.</p>
+        </div>
+        <div class="glp-footer__col">
+          <h3 class="glp-footer__col-title">Contact</h3>
+          <ul class="glp-footer__list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+17745261670">(774) 526-1670</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><a href="mailto:contact@goldlinehomeservices.com">contact@goldlinehomeservices.com</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Cape Cod, MA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>Fully Insured</li>
+          </ul>
+        </div>
+        <div class="glp-footer__col">
+          <h3 class="glp-footer__col-title">Company</h3>
+          <ul class="glp-footer__list">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+          <div class="glp-footer__social">
+            <a href="https://www.facebook.com/goldlinepaintingma/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.instagram.com/goldlinehomeservices/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="glp-footer__bottom">&copy; 2026 Goldline Painting &amp; Home Services Inc. All Rights Reserved.</div>
+    </footer>
+
+  </div><!-- /.glp-lp -->
+
+<script>
+/* =====================================================================
+   GOLDLINE PAINTING â€” LP â€” JS mÃ­nimo
+   1) Envio do formulÃ¡rio via Web3Forms (AJAX) + mensagem de sucesso
+   2) Smooth scroll dos botÃµes "Free Estimate" atÃ© o formulÃ¡rio
+   Sem dependÃªncias. Se o JS nÃ£o rodar, o form envia normal (fallback).
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  /* ---------- 1. FormulÃ¡rio (Web3Forms) ---------- */
+  var THANKS_URL = "https://goldlinehomeservices.com/thanks/";
+  var form = document.getElementById("form01");
+
+  if (form) {
+    var statusEl = document.getElementById("glp-form-status");
+    var submitBtn = form.querySelector(".glp-form__submit");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      if (statusEl) { statusEl.className = "glp-form__status"; statusEl.textContent = ""; }
+      if (submitBtn) {
+        submitBtn.classList.add("is-loading");
+        submitBtn.dataset.label = submitBtn.textContent;
+        submitBtn.textContent = "Sending...";
+      }
+
+      var data = new FormData(form);
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data
+      })
+        .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, json: j }; }); })
+        .then(function (r) {
+          if (r.ok && r.json.success) {
+            // Sucesso: leva para a pÃ¡gina de obrigado
+            if (submitBtn) { submitBtn.textContent = "Redirecting..."; }
+            window.location.assign(THANKS_URL);
+          } else {
+            showError(r.json.message || "Something went wrong. Please try again.");
+          }
+        })
+        .catch(function () {
+          showError("Network error. Please call us at (774) 526-1670.");
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.classList.remove("is-loading");
+            if (submitBtn.dataset.label) { submitBtn.textContent = submitBtn.dataset.label; }
+          }
+        });
+    });
+
+    function showError(msg) {
+      if (!statusEl) { return; }
+      statusEl.className = "glp-form__status glp-form__status--error";
+      statusEl.textContent = msg;
+    }
+  }
+
+  /* ---------- 2. Smooth scroll para o formulÃ¡rio ---------- */
+  document.querySelectorAll('a[href="#glp-estimate"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var target = document.getElementById("glp-estimate");
+      if (!target) { return; }
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Foca o primeiro campo depois do scroll (acessibilidade/conversÃ£o)
+      var firstInput = target.querySelector('input[type="text"], input[type="tel"]');
+      if (firstInput) { setTimeout(function () { firstInput.focus({ preventScroll: true }); }, 500); }
+    });
+  });
+
+})();
+</script>
