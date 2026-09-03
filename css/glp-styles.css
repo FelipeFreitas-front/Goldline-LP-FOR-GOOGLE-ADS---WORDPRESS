@@ -221,6 +221,8 @@
 .glp-header__phone:hover { color: var(--glp-gold); }
 .glp-header .glp-btn { padding: 12px 20px; font-size: 13px; }
 .glp-header__cta-text { display: none; }
+.glp-header__call { white-space: nowrap; }
+.glp-header__call svg { width: 17px; height: 17px; flex: none; }
 
 /* ------------------------------------------------------------------ */
 /* 5. HERO                                                             */
