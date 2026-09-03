@@ -63,7 +63,11 @@
 }
 
 .glp-lp img { max-width: 100%; height: auto; display: block; }
-.glp-lp a   { text-decoration: none; color: inherit; }
+.glp-lp a   { text-decoration: none; }
+/* Links herdam a cor do contexto — EXCETO os botões, que têm cor própria
+   na variante (.glp-btn--gold/green/dark). Sem o :not(.glp-btn), o
+   color:inherit venceria a cor do botão por especificidade. */
+.glp-lp a:not(.glp-btn) { color: inherit; }
 .glp-lp ul  { list-style: none; }
 .glp-lp button { font-family: inherit; cursor: pointer; }
 
