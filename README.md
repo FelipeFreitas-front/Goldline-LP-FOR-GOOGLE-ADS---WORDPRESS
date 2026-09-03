@@ -21,8 +21,7 @@ Goldline Painting/
     ├── 02-hero.html            ← contém o FORMULÁRIO (Web3Forms)
     ├── 03-trust-strip.html
     ├── 04-pricing.html
-    ├── 05-before-after.html
-    ├── 06-benefits.html
+    ├── 06-benefits.html            (05 Before/After foi removida — sem foto de "antes")
     ├── 07-gallery.html
     ├── 08-why-goldline.html
     ├── 09-testimonials.html
@@ -77,16 +76,22 @@ Faça upload das imagens na **Biblioteca de Mídia** do WordPress e troque cada
 > header/footer escuros. Se tiver uma versão **branca** da logo, troque o
 > `src` e remova o `background`/`padding` do `.glp-logo__img` no CSS.
 
-| Placeholder                | Onde aparece            | Sugestão de tamanho |
-|----------------------------|-------------------------|---------------------|
-| `REPLACE_hero-garage.jpg`  | Fundo do hero           | 1600×900            |
-| `REPLACE_before.jpg`       | Antes/Depois — Before   | 800×600             |
-| `REPLACE_after.jpg`        | Antes/Depois — After    | 800×600             |
-| `REPLACE_gallery-1.jpg`    | Galeria                 | 600×450             |
-| `REPLACE_gallery-2.jpg`    | Galeria                 | 600×450             |
-| `REPLACE_gallery-3.jpg`    | Galeria                 | 600×450             |
-| `REPLACE_gallery-4.jpg`    | Galeria                 | 600×450             |
-| `REPLACE_truck.jpg`        | Seção "Why Goldline"    | 800×600             |
+**Já aplicadas** (URLs reais do site goldlinehomeservices.com):
+- **Hero** → `2026/08/Residential_garage_interior_phot…_202608121717.jpeg`
+- **Galeria 1–4** → `2026/04/port-goldline-epoxy-01..04.webp`
+
+> Obs.: os nomes dos JPEGs contêm um caractere "…" (reticências, U+2026) de
+> verdade — no HTML ele vai codificado como `%E2%80%A6`.
+
+**Ainda placeholder** (1 imagem):
+
+| Placeholder          | Onde aparece         | Sugestão de tamanho |
+|----------------------|----------------------|---------------------|
+| `REPLACE_truck.jpg`  | Seção "Why Goldline" | 800×600             |
+
+Enquanto o `REPLACE_truck.jpg` não for trocado, a seção mostra um bloco escuro
+com a legenda "Foto do caminhão / equipe (a enviar)". A seção **Before/After
+foi removida** (não havia foto de "antes"); as transformações ficam na galeria.
 
 **Dica de performance:** exporte em **WebP** quando possível e mantenha os
 atributos `width`/`height` e `loading="lazy"` que já estão no código (evitam
@@ -150,7 +155,8 @@ Mudou lá → reflete na LP inteira.
 
 ## ✅ Checklist antes de publicar
 - [x] Access Key do Web3Forms aplicada
-- [ ] Substituir as imagens `REPLACE_...` (hero, before/after, galeria, truck)
+- [x] Hero e galeria com as fotos reais do site
+- [ ] Enviar a foto do caminhão/equipe e trocar `REPLACE_truck.jpg`
 - [x] Logo oficial já aplicada (header + footer)
 - [x] Telefone, e-mail e redes sociais confirmados no site oficial
 - [ ] Apontar Privacy Policy / Terms of Service (links `#` no footer)
