@@ -42,8 +42,8 @@
   --glp-shadow:    0 18px 45px rgba(0, 0, 0, .18);
   --glp-shadow-sm: 0 6px 18px rgba(0, 0, 0, .08);
 
-  /* Espaçamento vertical das seções (mobile primeiro) */
-  --glp-section-y: 48px;
+  /* Espaçamento vertical das seções (dobras): sempre 60px topo/base */
+  --glp-section-y: 60px;
 }
 
 /* ------------------------------------------------------------------ */
@@ -564,7 +564,7 @@
   position: relative;
   overflow: hidden;
 }
-.glp-final-cta__inner { padding-block: 44px; position: relative; z-index: 1; }
+.glp-final-cta__inner { padding-block: 60px; position: relative; z-index: 1; }
 .glp-final-cta__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.15; }
 .glp-final-cta__text { margin-top: 10px; font-size: 16px; font-weight: 500; }
 .glp-final-cta__btn { margin-top: 24px; }
@@ -628,7 +628,6 @@
 
 /* >= 860px : pricing em 3 colunas, header com telefone */
 @media (min-width: 860px) {
-  :root { --glp-section-y: 72px; }
   .glp-container { padding: 0 28px; }
   .glp-pricing__grid { grid-template-columns: repeat(3, 1fr); align-items: center; }
   .glp-price-card--featured { transform: scale(1.04); }

@@ -150,7 +150,7 @@ Mudou lá → reflete na LP inteira.
 ---
 
 ## ✅ Checklist antes de publicar
-- [ ] Colar a Access Key do Web3Forms
+- [x] Access Key do Web3Forms aplicada
 - [ ] Substituir as imagens `REPLACE_...` (hero, before/after, galeria, truck)
 - [x] Logo oficial já aplicada (header + footer)
 - [x] Telefone, e-mail e redes sociais confirmados no site oficial
