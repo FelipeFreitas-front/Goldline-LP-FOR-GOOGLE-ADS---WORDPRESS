@@ -60,6 +60,8 @@
   text-rendering: optimizeLegibility;
   background: var(--glp-white);
   overflow-x: hidden;
+  position: relative;
+  isolation: isolate; /* contexto de empilhamento proprio: isola z-index do tema */
 }
 
 .glp-lp img { max-width: 100%; height: auto; display: block; }
@@ -83,12 +85,14 @@
   width: 100%;
   max-width: var(--glp-container);
   margin: 0 auto;
-  padding: 0 20px;
+  padding-inline: 20px; /* só horizontal: não zera o padding-block de header/hero/faixas */
 }
 
-.glp-section { padding-block: var(--glp-section-y); }
-.glp-section--light { background: var(--glp-bg-light); }
-.glp-section--dark  { background: var(--glp-dark); color: var(--glp-text-on-dark); }
+/* Escopado em .glp-lp (especificidade 0,2,0) para vencer resets de tema/Elementor
+   que poderiam zerar o padding das dobras. */
+.glp-lp .glp-section { padding-top: var(--glp-section-y); padding-bottom: var(--glp-section-y); }
+.glp-lp .glp-section--light { background: var(--glp-bg-light); }
+.glp-lp .glp-section--dark  { background: var(--glp-dark); color: var(--glp-text-on-dark); }
 
 .glp-eyebrow {
   display: inline-block;
@@ -186,21 +190,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-block: 12px;
+  padding-block: 18px;
 }
 .glp-logo { display: flex; align-items: center; gap: 10px; }
 /* Logo em "chip" branco: a arte é preta+dourada, então precisa de fundo claro
    para ficar legível sobre o header/footer escuros. */
-.glp-logo__img {
+/* Escopado em .glp-lp para vencer o reset .glp-lp img { height:auto } */
+.glp-lp .glp-logo__img {
   display: block;
   height: 48px;
   width: auto;
+  max-width: none;
   background: #fff;
   padding: 6px 12px;
   border-radius: 9px;
   box-sizing: border-box;
 }
-.glp-logo img { max-height: 46px; width: auto; }
 .glp-logo__text { display: flex; flex-direction: column; line-height: 1.05; }
 .glp-logo__name { font-weight: 800; font-size: 20px; letter-spacing: .02em; }
 .glp-logo__name span { color: var(--glp-gold); }
@@ -224,7 +229,7 @@
   position: relative;
   background: var(--glp-dark);
   color: #fff;
-  isolation: isolate;
+  overflow: hidden; /* prende a imagem de fundo ao hero (evita vazar p/ outras dobras) */
 }
 .glp-hero__bg {
   position: absolute;
@@ -232,16 +237,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2;
+  z-index: 0; /* z-index positivo: robusto em Elementor/temas (nao vaza) */
 }
 .glp-hero::after { /* overlay escuro pra leitura */
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(10,10,10,.86) 0%, rgba(10,10,10,.78) 60%, rgba(10,10,10,.9) 100%);
-  z-index: -1;
+  z-index: 1;
 }
 .glp-hero__inner {
+  position: relative;
+  z-index: 2; /* conteudo sempre acima da imagem e do overlay */
   display: grid;
   gap: 32px;
   padding-block: 40px 48px;
@@ -549,7 +556,7 @@
   position: relative;
   overflow: hidden;
 }
-.glp-final-cta__inner { padding-block: 60px; position: relative; z-index: 1; }
+.glp-lp .glp-final-cta__inner { padding-top: 64px; padding-bottom: 64px; position: relative; z-index: 1; }
 .glp-final-cta__title { font-size: clamp(26px, 6vw, 38px); font-weight: 800; line-height: 1.15; }
 .glp-final-cta__text { margin-top: 10px; font-size: 16px; font-weight: 500; }
 .glp-final-cta__btn { margin-top: 24px; }
@@ -567,10 +574,11 @@
 /* 15. FOOTER                                                          */
 /* ------------------------------------------------------------------ */
 .glp-footer { background: var(--glp-dark); color: var(--glp-text-on-dark); }
-.glp-footer__inner {
+.glp-lp .glp-footer__inner {
   display: grid;
-  gap: 30px;
-  padding-block: 44px 28px;
+  gap: 34px;
+  padding-top: 56px;
+  padding-bottom: 32px;
 }
 .glp-footer__brand .glp-logo__name { font-size: 22px; }
 .glp-footer__tag { font-size: 13px; color: var(--glp-muted-on-dark); margin-top: 14px; max-width: 320px; }
@@ -589,9 +597,10 @@
 }
 .glp-footer__social a:hover { background: var(--glp-gold); border-color: var(--glp-gold); color: var(--glp-dark); }
 .glp-footer__social svg { width: 18px; height: 18px; }
-.glp-footer__bottom {
+.glp-lp .glp-footer__bottom {
   border-top: 1px solid var(--glp-border-dark);
-  padding-block: 18px 26px;
+  padding-top: 20px;
+  padding-bottom: 26px;
   text-align: center;
   font-size: 12px;
   color: var(--glp-muted-on-dark);
@@ -612,7 +621,7 @@
 
 /* >= 860px : pricing em 3 colunas, header com telefone */
 @media (min-width: 860px) {
-  .glp-container { padding: 0 28px; }
+  .glp-container { padding-inline: 28px; }
   .glp-pricing__grid { grid-template-columns: repeat(3, 1fr); align-items: center; }
   .glp-price-card--featured { transform: scale(1.04); }
   .glp-header__phone { display: inline-flex; }
